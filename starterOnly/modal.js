@@ -41,18 +41,20 @@ var quantity = document.getElementById("quantity");
 var birthdate = document.getElementById("birthdate");
 var radios = document.getElementsByName("location");
 var terms = document.getElementById("checkbox1");
+var myform = document.getElementById("myForm");
 
-
-var prenom_m = document.getElementById('prenom_manquant');
-var nom_m = document.getElementById('nom_manquant');
-var email_m = document.getElementById('email_manquant');
-var quantity_m = document.getElementById('nbtournoi_manquant');
-var birthdate_m = document.getElementById('birthdate_manquant');
-var radios_m = document.getElementById('radios_manquant');
-var terms_m = document.getElementById('terms_manquant');
+var preVaL = document.getElementById('preval'); 
+var emailVaL = document.getElementById('emailval');
+var nomVaL = document.getElementById('nomval'); 
+var ddnVaL = document.getElementById('ddnval'); 
+var quantityVal = document.getElementById('quantityval'); 
+var locVal = document.getElementById('locval'); 
+var termesVal = document.getElementById('termesval'); 
 
 validation.addEventListener('click' ,f_valid);
 
+
+var formDatanex = document.querySelectorAll(".formData");
 
 //fonction qui verifie si l'adresse email est valide
 function checkEmail(email) {
@@ -66,93 +68,127 @@ function f_valid(e){
   //validation donnée prenom
   if (first.validity.valueMissing){
     e.preventDefault();
-    prenom_m.textContent = "le prenom est manquant";
-    prenom_m.style.color = "red";
+    preVaL.setAttribute('data-error-visible',true);
+    preVaL.setAttribute('data-error','Vous devez saisir votre nom');
   }
-  else{
-    prenom_m.textContent = "";
+  else {
+    preVaL.removeAttribute('data-error-visible');
   }
-
-  
 
   //validation donnée nom
   if (last.validity.valueMissing){
     e.preventDefault();
-    nom_m.textContent = "le nom est manquant";
-    nom_m.style.color = "red";
+    nomVaL.setAttribute('data-error-visible',true);
+    nomVaL.setAttribute('data-error','Vous devez saisir votre nom');
   }
-  else{
-    nom_m.textContent = "";
+  else {
+    nomVaL.removeAttribute('data-error-visible');
+
   }
 
   
   //validation donnée email
 
     //adresse manquante
-  if (email.value == ""){ 
-    email_m.textContent="adresse manquante"; 
-    email_m.style.color = "red";
-      email.focus(); 
-      return false; 
-  }    
+  if (email.validity.valueMissing){ 
+    e.preventDefault();
+    emailVaL.setAttribute('data-error-visible',true);
+    emailVaL.setAttribute('data-error','Vous devez saisir votre adresse e-mail');
+    email.focus(); 
+    return false; 
+}    
 
       //adresse non valide
   if (email.value.indexOf("@", 0) < 0)                 
   { 
-    email_m.textContent="Mettez une adresse email valide."; 
-    email_m.style.color = "red";
+    emailVaL.setAttribute('data-error-visible',true);
+    emailVaL.setAttribute('data-error','Vous devez saisir une adresse e-mail valide');
       email.focus(); 
       return false; 
-  }    
+  }      else {
+    emailVaL.removeAttribute('data-error-visible');
+
+  }
   if (email.value.indexOf(".", 0) < 0)                 
   { 
-    email_m.textContent="Mettez une adresse email valide."; 
-    email_m.style.color = "red";
+    emailVaL.setAttribute('data-error-visible',true);
+    emailVaL.setAttribute('data-error','Vous devez saisir une adresse e-mail valide');
       email.focus(); 
       return false; 
-  }    
+  }      else {
+    emailVaL.removeAttribute('data-error-visible');
 
-  //validation donnee numerique tournoi
-
-  if (quantity.value >= 0 && quantity.value < 100){
-    quantity_m.textContent="";
-} else {
-  e.preventDefault();
-  quantity_m.textContent="Veuillez entrer une valeur numérique ";
-  quantity_m.style.color = "red";
-}
-
+  }
+  
 //validation donnee date de naissance
 
 if (birthdate.validity.valueMissing){
   e.preventDefault();
-  birthdate_m.textContent = "Vous devez entrer votre date de naissance.";
-  birthdate_m.style.color = "red";
+  ddnVaL.setAttribute('data-error-visible',true);
+  ddnVaL.setAttribute('data-error','Vous devez saisir votre date de naissance');
 }
-else{
-  birthdate_m.textContent = "";
+else {
+  ddnVaL.removeAttribute('data-error-visible');
+
 }
+  //validation donnee numerique tournoi
+
+
+  if (quantity.validity.valueMissing){
+    e.preventDefault();
+    quantityVal.setAttribute('data-error-visible',true);
+    quantityVal.setAttribute('data-error','Vous devez saisir une valeur numérique ');
+  }
+  else {
+    quantityVal.removeAttribute('data-error-visible');
+  }
+
+
+  if (quantity.value >= 0 && quantity.value < 100){
+    
+} else {
+  e.preventDefault();
+  quantityVal.setAttribute('data-error-visible',true);
+  quantityVal.setAttribute('data-error','Vous devez saisir une valeur numerique sup ou ég à');
+}
+
 
 
 //verifier qu'un bouton radio est au moins séléctionné
  
 if(document.querySelector('input[name="location"]:checked') == null) {
   e.preventDefault();
-  radios_m.textContent = "Vous devez choisir une option.";
-  radios_m.style.color = "red";
+  locVal.setAttribute('data-error-visible',true);
+  locVal.setAttribute('data-error','Vous devez choisir une option');
 }
 else{
-  radios_m.textContent = "";
+  locVal.removeAttribute('data-error-visible');
 }
 
 //verifier case à cocher conditions termes
 
 if(document.getElementById("checkbox1").checked == false){
   e.preventDefault();
-  terms_m.textContent = "Vous devez accepter les termes.";
-  terms_m.style.color = "red";
+  termesVal.setAttribute('data-error-visible',true);
+  termesVal.setAttribute('data-error','Vous devez accepter les termes');
 }
 else{
-  terms_m.textContent = "";
+  termesVal.removeAttribute('data-error-visible');
 }
-};
+}
+validation.addEventListener('click', () => {
+
+  const cont =document.getElementsByClassName('content');
+
+  if (cont.style.visibility === 'hidden') {
+    // 👇️ this SHOWS the form
+    cont.style.visibility = 'visible';
+  } else {
+    // 👇️ this HIDES the form
+    cont.style.visibility = 'hidden';
+  }
+})
+
+
+
+;

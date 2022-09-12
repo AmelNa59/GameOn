@@ -61,10 +61,12 @@
               id="myForm"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+        
+             
+
             >
               <div
-                class="formData">
+                class="formData"  id="preval" >
                 <label for="first">Prénom</label><br>
                 <input
                   class="text-control"
@@ -74,10 +76,10 @@
                   required minlength="2"
                   pattern="[a-z]+"
                 /><br>
-                <span id="prenom_manquant"></span><br>
+           
               </div>
               <div
-                class="formData">
+                class="formData" id="nomval">
                 <label for="last">Nom</label><br>
                 <input
                   class="text-control"
@@ -86,11 +88,12 @@
                   name="last"
                   required minlength="2"
                   pattern="[a-z]+"
+                  onclick="nom(a)"
                 /><br>
-                <span id="nom_manquant"></span><br>
+
               </div>
               <div
-                class="formData">
+                class="formData" id="emailval">
                 <label for="email">E-mail</label><br>
                 <input
                   class="text-control"
@@ -99,10 +102,10 @@
                   name="email"
                   required
                 /><br>
-                <span id="email_manquant"></span><br>
+          
               </div>
               <div
-                class="formData">
+                class="formData" id="ddnval">
                 <label for="birthdate">Date de naissance</label><br>
                 <input
                   class="text-control"
@@ -111,18 +114,19 @@
                   name="birthdate"
                   required
                 /><br>
-                <span id="birthdate_manquant"></span><br>
+      
+  
               </div>
               <div
-                class="formData">
+                class="formData" id="quantityval">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="numbersOnly" class="text-control" id="quantity" name="quantity" min="0" max="99" required><br>
-                <span id="nbtournoi_manquant"></span><br>
+
               </div>
 
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
-                class="formData">
+                class="formData" id="locval">
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -189,12 +193,12 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 >
-                <span id="radios_manquant"></span><br>
+            
 
               </div>
 
               <div
-                class="formData">
+                class="formData" id="termesval">
                 <input
                   class="checkbox-input"
                   type="checkbox"
@@ -206,7 +210,7 @@
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
                 <br>
-                <span id="terms_manquant"></span><br>
+     
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
@@ -220,9 +224,13 @@
                 class="button"
                 value="C'est parti"
                 id="bouton_envoie"
-          
+                
+            
+                
+             
               />
             </form>
+      
           </div>
         </div>
       </div>
