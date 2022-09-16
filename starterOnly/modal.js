@@ -164,7 +164,7 @@ else {
   quantityVal.setAttribute('data-error','Vous devez saisir une valeur numerique sup ou ég à');
   results.push(true);
 }
-
+// Fred: Attention à l'indentation du code, on a du mal à voir où la fonction f_valid se termine
 
 
 //verifier qu'un bouton radio est au moins séléctionné
@@ -194,23 +194,33 @@ else{
 }
 }
 
+// Fred: tu n'as pas besoin de cette ligne, results est une variable locale à la fonction f_valid
 results = [true, true, true, true, true, true,true,true,true];
 
+// Fred: ce bloc de code devrait se trouver à la fin de la fonction f_valid
 if (result.every()) {
   // envoi le formulaire
-  myform.submit();
+  myform.submit(); // Fred: ici il ne faut pas envoyer le formulaire mais afficher un message de confimation
+  // sendConfirmMessage()
 }
 
+// Fred: et tu définis la fonction pour afficher le message de confirmation
+function sendConfirmMessage() {
+  // 1. Cache le formulaire
+  // 2. Affiche une div avec le message de confirmation
+}
 
 validation.addEventListener('click', () => {
+
+// Fred: le code en-dessous doit se trouver dans la fonction sendConfirmMessage
 
   const cont =document.getElementsByClassName('content');
 
   if (cont.display === 'none') {
-    // 👇️ this SHOWS the form
+    // 👇️ this SHOWS the form  Fred: là du effaces le content du DOM
     cont.display= 'none';
   } else {
-    // 👇️ this HIDES the form
+    // 👇️ this HIDES the form  Fred: là tu rends le content invisible mais il est toujours dans le DOM
     cont.style.visibility = 'hidden';
   }
 })
