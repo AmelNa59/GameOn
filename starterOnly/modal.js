@@ -62,9 +62,11 @@ function checkEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 }
-//fonction qui verifie qu'il y a au moins deux caracteres
+//fonction qui reinitialise les données du formulaire
 
-
+function resetForm(){
+  myform.reset();
+}
 //fonction principale verifiant les données du formulaire
 function f_valid(e) {
  
@@ -221,24 +223,25 @@ function f_valid(e) {
     // envoi le formulaire
     masquerformulaire();
     affichermessage();
+
+
   }
 
   //me permet de controler les entrées avec la console
   console.log(results);
 
-
 }
+//masque le formulaire
 function masquerformulaire() {
 
   const masquerform = document.getElementById("myForm").style.display = 'none';
 
-
 }
-
+//affiche le formulaire
 function affichermessage() {
 
   const affichermsg = document.getElementById("modal");
-  affichermsg.innerHTML = '<center><p>Merci pour</p></br><p>votre inscription</p> <button class="btn-submit btn-close " id="button-suscribe" onclick="closerModal()">Fermer</button></center> ';
+  affichermsg.innerHTML = '<center><p>Merci pour</p></br><p>votre inscription</p> <button class="btn-submit btn-close " onclick="javascript:window.location.reload()" id="button-suscribe" >Fermer</button></center> ';
   affichermsg.style.maxWidth = "500px";
   affichermsg.style.height = "711px";
   affichermsg.style.paddingTop = "50%";
@@ -248,5 +251,7 @@ function affichermessage() {
   affichermsg.style.fontFamily = 'DM Sans', 'Arial', 'Helvetica', 'sans-serif';
   affichermsg.style.fontStretch = '10px';
 
-}
-;
+};
+
+//Rafraichit le formulaire
+resetForm();
